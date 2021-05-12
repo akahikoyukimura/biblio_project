@@ -18,7 +18,7 @@
 				if (request.getParameter("res") != null) {
 					if (request.getParameter("res").equals("err")) {
 				%>
-				<li class="list-group-item list-group-item-danger">les champs ne doit pas être vide</li>
+				<li class="list-group-item list-group-item-danger text-center rounded">Veuillez remplir tout les champs : )</li>
 
 				<%}}%>
 
@@ -35,7 +35,7 @@
 					<div class="form-group mt-3">
 						<label for="Autheur">Auteur</label> <input type="text"
 							class="form-control" id="Autheur" name="author"
-							placeholder="Autheur">
+							placeholder="Auteur">
 					</div>
 					<div class="form-group mt-3">
 						<button type="submit" class="btn btn-primary px-5">Ajouter</button>

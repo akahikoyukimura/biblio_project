@@ -33,6 +33,12 @@ public class addBook extends HttpServlet {
 		bm =new BookManager();
 	}
 
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		super.doGet(req, resp);
+	}
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -48,7 +54,7 @@ public class addBook extends HttpServlet {
 			bm.addBook(b);
 			response.sendRedirect("booksHandling.jsp?res=succ");
 		} else {
-			response.sendRedirect("addBook?res=err");
+			response.sendRedirect("addBook.jsp?res=err");
 		}
 
 		

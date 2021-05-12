@@ -19,18 +19,14 @@
 				if (request.getParameter("res") != null) {
 					if (request.getParameter("res").equals("err")) {
 				%>
-				<li class="list-group-item list-group-item-danger">Le login ou
+				<li class="list-group-item list-group-item-danger text-center rounded">Le login ou
 					le mot de passe est incorrect :(</li>
 
-				<%
-				} else if(request.getParameter("res").equals("succ")) {
-				%>
-				<li class="list-group-item list-group-item-success">l'Etudiant
+				<%} else if(request.getParameter("res").equals("succ")) {%>
+				
+				<li class="list-group-item list-group-item-success text-center rounded">L'etudiant
 					est cree avec succee :)</li>
-				<%
-				}
-				}
-				%>
+				<%}}%>
 
 
 				<form action="Connection" method="post">
@@ -45,7 +41,7 @@
 					</div>
 					<div class="form-group mt-3">
 						<button type="submit" class="btn btn-primary px-5">Log</button>
-						<a href="createAccount.jsp" class="btn btn-primary px-5 ml-3">Create
+						<a href="createAccount.jsp" class="btn btn-primary px-3">New
 							account</a>
 					</div>
 

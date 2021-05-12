@@ -12,17 +12,12 @@
 <script src="js/bootstrap.js"></script>
 </head>
 <body>
-
-	
-
+<jsp:include page="navBar.jsp"></jsp:include>
 	<!-- declaration -->
 	<%
 	Student s = (Student) session.getAttribute("student");
 	StudentManager sm = new StudentManager();
 	%>
-	
-
-
 	
 	<!-- supprimer etudiant -->
 	<%
@@ -31,18 +26,17 @@
 			int id = Integer.parseInt(request.getParameter("id"));
 			sm.deleteStudent(id);
 		}
-	}
-	%>
-	<jsp:include page="navBar.jsp"></jsp:include>
+	}%>
+	
 		<%
 		if (request.getParameter("res") != null) {
 		if (request.getParameter("res").equals("succ")) {
 		%>
-		<li class="list-group-item list-group-item-success">l'Etudiant
-			est ajoute avec succee :)</li>
-		<%
-		}}
-		%>
+		<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+		        <li class="list-group-item list-group-item-success mt-2 col-6 text-center rounded">L'etudiant
+			est ajoute avec succee : )</li>
+		</div>
+		<%}}%>
 
 	<!-- la liste des livres dans la bibliotheque -->
 	<%
@@ -50,27 +44,17 @@
 	%>
 
 	<div class="Container m-5">
-		
-		
 		<h4>
-			Salut
-			<%=s.getLogin().toUpperCase()%>
+			Salut <%=s.getLogin().toUpperCase()%>
 		</h4>
-		<p>page gestion des etudiants</p>
+		<p>Dans la page gestion des etudiants</p><hr>
 		<div class="row ">
-			<div class="col-4"></div>
-			<div class="col-4 offset-4 ">
-				<div class="row">
-					<div class="col-4 col-4 offset-8">
+					<div class="d-grid gap-2 mb-3">
+						<a href="createAccount.jsp" class="btn btn-success">Ajouter un nouveau etudiant</a>
+		</div>
+		<hr>
 
-						<a href="createAccount.jsp" class="btn btn-success px-5 py-2 m-2">Ajouter</a>
-					</div>
-				</div>
-			</div>
-			<hr>
-
-			<%
-			for (Student s1 : as) {
+			<%for (Student s1 : as) {
 				
 			/* si admin  */
 				String st = "enabled";
@@ -78,22 +62,16 @@
 					if(s1.getId() == s.getId()){
 						st = "disabled";
 					}	
-				}
+				}%>
 				
-			%>
-			<div class="col-4 mt-4">
+			<div class="col-12 mt-4">
 				<div class="card">
 					<div class="card-header">
 						<div class="row justify-content-between">
 							<div class="col-4">
 								<h5><%=s1.getLogin().toUpperCase()%></h5>
 							</div>
-							<div class="col-4">
-								<a href="?op=delete&id=<%=s1.getId()%>"
-									class="btn btn-danger px-4 py-2 <%= st%>">Supprimer</a>
-							</div>
 						</div>
-
 					</div>
 					<div class="card-body">
 
@@ -107,7 +85,10 @@
 							<small>Passwoord : <%=s1.getPassword()%>
 							</small>
 						</p>
-
+						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+								<a href="?op=delete&id=<%=s1.getId()%>"
+									class="btn btn-danger px-4 py-2 <%= st%>">Supprimer</a>
+						</div>
 					</div>
 				</div>
 			</div>

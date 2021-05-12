@@ -15,15 +15,15 @@
 </head>
 <body>
 
-	<!-- decalration -->
+	<jsp:include page="navBar.jsp"></jsp:include>
+	
+	<!-- declaration -->
 	<%
 	Student s = (Student) session.getAttribute("student");
 	BookManager bm = new BookManager();
 	List<Book> ab ;
 	%>
-
-
-
+	
 	<!-- emprunter un livre pour un etudiant -->
 	<%
 	if (request.getParameter("op") != null) {
@@ -35,41 +35,25 @@
 	}
 	%>
 
-
-	<!-- nave bare -->
-	<jsp:include page="navBar.jsp"></jsp:include>
-
 	<!-- lister les livres -->
 	<%
 	if (request.getParameter("Cop") != null) {
-		/* la list des livres de bibliotheque par categorie*/
-		
 		String Cop = request.getParameter("Cop");
 		 ab = bm.allBooksByCategorie(Cop);
 	} else if (request.getParameter("Aop") != null) {
-		/* la list des livres de bibliotheque par auteur */
-		
 		String Aop = request.getParameter("Aop");
 		 ab = bm.allBooksByAuthor(Aop);
-	}else{	
-	/* la list des livres de bibliotheque */
-	
+	}else{
 	 	 ab = bm.allBooksAvailable();
 	}
 	%>
 
-
 	<div class="Container m-5">
-		<h4>
-			Salut
-			<%=s.getLogin().toUpperCase()%>
-		</h4>
-		<p>bienvenu dans la bibliotheque</p>
-		<div class="row ">
-			<div class="col-4"></div>
-			<div class="col-4 offset-4 ">
+		<h3>Salut <%=s.getLogin().toUpperCase()%></h3>
+		<p>bienvenu dans la bibliotheque</p><hr>
+	
 				<div class="row">
-					<div class="col-10 offset-2  ">
+					<div class="col-10 offset-1  ">
 
 						<form class="d-flex mb-2" method="Get">
 							<input class="form-control me-2" type="search"
@@ -82,46 +66,34 @@
 							<button class="btn btn-outline-success" type="submit">Search</button>
 						</form>
 					</div>
-				</div>
-			</div>
-
-
+			
 			<hr>
-			<%
-			for (Book b : ab) {
-			%>
-			<div class="col-4 mt-3">
+			<%for (Book b : ab) {%>
+			<div class="col-12 mt-3">
 				<div class="card">
 					<div class="card-header">
 						<div class="row justify-content-between">
-							<div class="col-4">
-								<h5><%=b.getName().toUpperCase()%></h5>
-							</div>
-
-							<div class="col-4">
-								<a
-									href="?op=add&student_id=<%=s.getId()%>&book_id=<%=b.getId()%>"
-									class="btn btn-success px-3 py-2">Emprunter</a>
+							<div class="col-6">
+								<h5>Livre de <%=b.getName()%></h5>
 							</div>
 						</div>
-
 					</div>
+					
 					<div class="card-body">
-
 						<p class="card-text ">
 							<b>Categorie : </b><%=b.getCategorie()%>
 						</p>
 						<p class="card-text ">
-							<small>Auteur : <%=b.getAuthor()%>
-							</small>
+							<b>Auteur : </b><%=b.getAuthor()%>
 						</p>
-
+						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+								<a href="?op=add&student_id=<%=s.getId()%>&book_id=<%=b.getId()%>"
+									class="btn btn-success px-3 py-2">Emprunter</a>
+						</div>
 					</div>
 				</div>
 			</div>
-			<%
-			}
-			%>
+			<%}%>
 		</div>
 	</div>
 </body>

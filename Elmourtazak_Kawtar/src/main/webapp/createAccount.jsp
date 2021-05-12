@@ -18,7 +18,7 @@
 				if (request.getParameter("res") != null) {
 					if (request.getParameter("res").equals("err")) {
 				%>
-				<li class="list-group-item list-group-item-danger">les champs ne doit pas être vide</li>
+				<li class="list-group-item list-group-item-danger text-center rounded">Veuillez remplir tout les champs : )</li>
 
 				<%}}%>
 
